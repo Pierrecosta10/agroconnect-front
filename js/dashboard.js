@@ -7,22 +7,17 @@ const Dashboard = {
      * Initialize the dashboard
      */
     init: function() {
-        // Get current user
         const currentUser = Auth.getCurrentUser();
         
-        // Update user name in welcome message
         const userNameElement = document.getElementById('user-name');
         if (userNameElement && currentUser) {
             userNameElement.textContent = currentUser.nome;
         }
         
-        // Initialize charts
         this.initCharts();
         
-        // Initialize menu toggle for mobile
         this.initMobileMenu();
         
-        // Initialize navigation active state
         this.initNavigation();
     },
     
@@ -30,12 +25,10 @@ const Dashboard = {
      * Initialize charts in the dashboard
      */
     initCharts: function() {
-        // Production chart
         const productionChartElement = document.getElementById('production-chart');
         if (productionChartElement) {
             const ctx = productionChartElement.getContext('2d');
             
-            // Sample data for the chart
             const data = {
                 labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set'],
                 datasets: [{
@@ -50,7 +43,6 @@ const Dashboard = {
                 }]
             };
             
-            // Chart configuration
             const config = {
                 type: 'line',
                 data: data,
@@ -78,7 +70,6 @@ const Dashboard = {
                 }
             };
             
-            // Create the chart
             new Chart(ctx, config);
         }
     },

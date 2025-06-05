@@ -13,37 +13,36 @@ const Utils = {
         const alertContainer = document.getElementById(containerId || 'alert-container');
         if (!alertContainer) return;
         
-        // Remove any existing alerts
+       
         while (alertContainer.firstChild) {
             alertContainer.removeChild(alertContainer.firstChild);
         }
         
-        // Create the alert element
+      
         const alert = document.createElement('div');
         alert.className = `alert alert-${type}`;
         
-        // Add icon based on type
+   
         const icon = document.createElement('span');
         icon.className = 'alert-icon';
         icon.innerHTML = type === 'success' 
             ? '<i class="fas fa-check-circle"></i>' 
             : '<i class="fas fa-exclamation-circle"></i>';
         
-        // Add message
         const messageSpan = document.createElement('span');
         messageSpan.textContent = message;
         
-        // Append elements
+     
         alert.appendChild(icon);
         alert.appendChild(messageSpan);
         alertContainer.appendChild(alert);
         
-        // Add show class for animation
+     
         setTimeout(() => {
             alert.classList.add('show');
         }, 10);
         
-        // Remove alert after 5 seconds
+
         setTimeout(() => {
             alert.classList.remove('show');
             setTimeout(() => {

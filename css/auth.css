@@ -1,4 +1,4 @@
-/* Auth pages styles */
+
 .auth-container {
     min-height: 100vh;
     display: flex;
@@ -89,7 +89,7 @@
     border-top: 1px solid #eee;
 }
 
-/* Background waves */
+/* Background-ondas*/
 .auth-background {
     position: absolute;
     bottom: 0;
@@ -141,7 +141,7 @@
     }
 }
 
-/* Responsive adjustments for auth pages */
+/* Responsividade*/
 @media (max-width: 768px) {
     .auth-form-container {
         flex-direction: column;

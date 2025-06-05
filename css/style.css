@@ -1,4 +1,4 @@
-/* Base styles */
+
 :root {
     --primary-color: #1d4d28;
     --primary-light: #2e8a41;
@@ -85,7 +85,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Form elements */
 input, select, textarea {
     width: 100%;
     padding: 0.75rem;
@@ -141,7 +140,6 @@ label {
     display: none;
 }
 
-/* Alert styles */
 .alert {
     padding: 0.75rem 1rem;
     border-radius: var(--border-radius);
@@ -174,7 +172,6 @@ label {
     margin-right: 0.5rem;
 }
 
-/* Animation classes */
 .fade-in {
     animation: fadeIn 0.5s ease forwards;
 }
@@ -201,7 +198,7 @@ label {
     }
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     html {
         font-size: 14px;
@@ -216,7 +213,7 @@ label {
     }
 }
 
-/* Dashboard styles */
+
 .dashboard-container {
     display: flex;
     flex-direction: column;
@@ -394,7 +391,7 @@ label {
     font-weight: 700;
 }
 
-/* Sales card specific styles */
+/* Sales cards*/
 .sales-total {
     display: flex;
     justify-content: space-between;
@@ -437,7 +434,7 @@ label {
     border-bottom: none;
 }
 
-/* Weather card specific styles */
+/*card specific styles */
 .current-weather {
     display: flex;
     align-items: center;
@@ -478,7 +475,7 @@ label {
     color: var(--accent-color);
 }
 
-/* Info card specific styles */
+
 .info-item {
     display: flex;
     align-items: center;
@@ -511,7 +508,6 @@ label {
     color: var(--text-light);
 }
 
-/* Responsive adjustments for dashboard */
 @media (max-width: 992px) {
     .dashboard-content {
         margin-left: 0;

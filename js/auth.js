@@ -9,13 +9,12 @@ const Auth = {
     initLogin: function() {
         const loginForm = document.getElementById('login-form');
         if (loginForm) {
-            // Add form submission handler
+           
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 this.login();
             });
             
-            // Add password toggle functionality
             const togglePassword = loginForm.querySelector('.toggle-password');
             if (togglePassword) {
                 togglePassword.addEventListener('click', () => {
@@ -27,7 +26,6 @@ const Auth = {
                 });
             }
             
-            // Add input event listeners for validation
             const emailField = document.getElementById('email');
             if (emailField) {
                 emailField.addEventListener('input', () => {
@@ -50,13 +48,12 @@ const Auth = {
     initCadastro: function() {
         const cadastroForm = document.getElementById('cadastro-form');
         if (cadastroForm) {
-            // Add form submission handler
+        
             cadastroForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 this.register();
             });
             
-            // Add password toggle functionality for both password fields
             const togglePasswordButtons = cadastroForm.querySelectorAll('.toggle-password');
             togglePasswordButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -68,7 +65,6 @@ const Auth = {
                 });
             });
             
-            // Add input event listeners for validation
             const nomeField = document.getElementById('nome');
             if (nomeField) {
                 nomeField.addEventListener('input', () => {
@@ -103,11 +99,10 @@ const Auth = {
      * Handle login form submission
      */
     login: function() {
-        // Get form values
+
         const email = document.getElementById('email').value.trim();
         const senha = document.getElementById('senha').value;
         
-        // Validate email
         if (!email) {
             Utils.showFieldError('email', 'E-mail é obrigatório');
             return;
@@ -118,35 +113,28 @@ const Auth = {
             return;
         }
         
-        // Validate password
         if (!senha) {
             Utils.showFieldError('senha', 'Senha é obrigatória');
             return;
         }
-        
-        // Get users from storage
+ 
         const users = Utils.getFromStorage('users') || [];
         
-        // Find user with matching email
         const user = users.find(u => u.email === email);
         
-        // Check if user exists and password matches
         if (user && user.senha === senha) {
-            // Store current user info in session
             Utils.saveToStorage('currentUser', {
                 id: user.id,
                 nome: user.nome,
                 email: user.email
             });
             
-            // Show success message and redirect to dashboard
             Utils.showAlert('Login realizado com sucesso!', 'success', 'alert-container');
             
             setTimeout(() => {
                 Router.navigateTo('/dashboard');
             }, 1000);
         } else {
-            // Show error message
             Utils.showAlert('E-mail ou senha inválidos.', 'error', 'alert-container');
         }
     },
@@ -155,19 +143,16 @@ const Auth = {
      * Handle registration form submission
      */
     register: function() {
-        // Get form values
         const nome = document.getElementById('nome').value.trim();
         const email = document.getElementById('email-cadastro').value.trim();
         const senha = document.getElementById('senha-cadastro').value;
         const confirmaSenha = document.getElementById('confirma-senha').value;
         
-        // Validate name
         if (!nome) {
             Utils.showFieldError('nome', 'Nome é obrigatório');
             return;
         }
         
-        // Validate email
         if (!email) {
             Utils.showFieldError('email-cadastro', 'E-mail é obrigatório');
             return;
@@ -177,8 +162,7 @@ const Auth = {
             Utils.showFieldError('email-cadastro', 'E-mail inválido');
             return;
         }
-        
-        // Validate password
+ 
         if (!senha) {
             Utils.showFieldError('senha-cadastro', 'Senha é obrigatória');
             return;
@@ -189,7 +173,6 @@ const Auth = {
             return;
         }
         
-        // Validate password confirmation
         if (!confirmaSenha) {
             Utils.showFieldError('confirma-senha', 'Confirmação de senha é obrigatória');
             return;
@@ -200,16 +183,13 @@ const Auth = {
             return;
         }
         
-        // Get existing users from storage
         const users = Utils.getFromStorage('users') || [];
         
-        // Check if email is already in use
         if (users.some(user => user.email === email)) {
             Utils.showFieldError('email-cadastro', 'Este e-mail já está em uso');
             return;
         }
         
-        // Create new user
         const newUser = {
             id: Date.now().toString(),
             nome,
@@ -217,11 +197,8 @@ const Auth = {
             senha
         };
         
-        // Add user to storage
         users.push(newUser);
         Utils.saveToStorage('users', users);
-        
-        // Show success message and redirect to login
         Utils.showAlert('Cadastro realizado com sucesso!', 'success', 'cadastro-alert-container');
         
         setTimeout(() => {
@@ -233,10 +210,8 @@ const Auth = {
      * Log out the current user
      */
     logout: function() {
-        // Remove current user from storage
         Utils.removeFromStorage('currentUser');
         
-        // Redirect to login
         Router.navigateTo('/login');
     },
     
@@ -245,7 +220,6 @@ const Auth = {
      * @returns {boolean} - Whether a user is authenticated
      */
     isAuthenticated: function() {
-        // Check if there's a current user in storage
         const currentUser = Utils.getFromStorage('currentUser');
         return !!currentUser;
     },
